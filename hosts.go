@@ -2,7 +2,7 @@
 package main
 
 import (
-	//	"encoding/xml"
+	"log"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -17,14 +17,12 @@ func main() {
 
 	resp, err := http.Get("http://goo.gl/hbhlU")
 	if err != nil {
-		fmt.Println("error at get")
-		fmt.Sprint(err)
-		exit(1)
+		log.Fatal(err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Sprint(err)
+		log.Fatal(err)
 	}
 
 	test, _ := os.Create("test")
@@ -43,12 +41,5 @@ func main() {
 	file, err := os.Create("hTest")
 	defer file.Close()
 	file.Write(hosts)
-	/*
-		file, err := os.Create("hosts")
-		if err != nil {
-			fmt.Sprint(err)
-		}
-		defer file.Close()
-		file.Write(body[iBegin:iEnd])
-	*/
+
 }
