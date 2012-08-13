@@ -50,7 +50,7 @@ func main() {
 	file.Write(hosts)
 
 	if platform != "nix" {
-		systemroot := os.Getenv(SYSTEMROOT)
+		systemroot := os.Getenv("SYSTEMROOT")
 		syshosts, err := os.Open(systemroot+"/system32/drivers/etc/hosts")
 		if err != nil {
 			log.Fatal(err)
